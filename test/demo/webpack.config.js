@@ -1,3 +1,4 @@
+var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var path = require('path')
 
@@ -17,7 +18,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'index.html'),
       filename: 'index.html'
-    })
+    }),
+    new ScriptExtHtmlWebpackPlugin({ inline: 'bundle' })
   ],
   devServer: {
     contentBase: path.join(__dirname, 'build')

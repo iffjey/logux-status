@@ -32,6 +32,7 @@
     "logux-sync": "logux/logux-sync",
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.1",
+    "script-ext-html-webpack-plugin": "^1.7.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
     "webpack-bundle-analyzer": "^2.3.1",
@@ -48,7 +49,8 @@
     "prebundle": "webpack index.js bundle/index.js",
     "bundle": "gzip -9 -f bundle/index.js",
     "postbundle": "ls -lh bundle/*.gz | awk '{print \"Size:\", $5\"B\"}'",
-    "demo": "webpack-dev-server --config test/demo/webpack.config"
+    "demo": "webpack-dev-server --config test/demo/webpack.config",
+    "build": "webpack --config test/demo/webpack.config"
   },
   "jest": {
     "coverageThreshold": {
