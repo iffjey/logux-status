@@ -50,7 +50,7 @@
     "bundle": "gzip -9 -f bundle/index.js",
     "postbundle": "ls -lh bundle/*.gz | awk '{print \"Size:\", $5\"B\"}'",
     "demo": "webpack-dev-server --config test/demo/webpack.config",
-    "build": "webpack --config test/demo/webpack.config"
+    "build": "webpack --config test/demo/webpack.config -p"
   },
   "jest": {
     "coverageThreshold": {
