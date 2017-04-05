@@ -36,6 +36,7 @@
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.1",
     "script-ext-html-webpack-plugin": "^1.7.1",
+    "svgo": "^0.7.2",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.2",
     "webpack-bundle-analyzer": "^2.3.1",
@@ -53,7 +54,8 @@
     "bundle": "gzip -9 -f bundle/index.js",
     "postbundle": "ls -lh bundle/*.gz | awk '{print \"Size:\", $5\"B\"}'",
     "demo": "webpack-dev-server --config test/demo/webpack.config",
-    "build": "webpack --config test/demo/webpack.config -p"
+    "build": "webpack --config test/demo/webpack.config -p",
+    "imgmin": "svgo -f badge"
   },
   "jest": {
     "coverageThreshold": {
@@ -66,6 +68,10 @@
     "extends": "eslint-config-logux/browser"
   },
   "lint-staged": {
+    "*.svg": [
+      "imgmin",
+      "git add"
+    ],
     "*.md": "yaspeller-ci",
     "*.js": "eslint"
   },
