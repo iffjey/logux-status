@@ -14,12 +14,23 @@ var confirm = require('logux-status/confirm')
 var favicon = require('logux-status/favicon')
 var log = require('logux-status/log')
 
+var badgeMessages = require('logux-status/badge/en')
+var badgeStyles = require('logux-status/badge/default')
+var badgeIcons = require('logux-status/icons')
+var badge = require('logux-status/badge')
+
 attention(client)
 confirm(client, i18n.t('loguxWarn'))
 favicon(client, {
   normal: '/favicon.ico',
   offline: '/offline.ico',
   error: '/error.ico'
+})
+badge(client, {
+  position: 'bottom-right',
+  messages: badgeMessages,
+  styles: badgeStyles,
+  icons: badgeIcons
 })
 log(client)
 ```
@@ -122,6 +133,98 @@ It returns a function to disable itself.
 
 ```js
 var unbind = favicon(client, favicons)
+function disableLogux() {
+  unbind()
+}
+```
+
+
+## `badge`
+
+Display Logux synchronization state in widget.
+
+```js
+var badgeMessages = require('logux-status/badge/en')
+var badgeStyles = require('logux-status/badge/default')
+var badgeIcons = require('logux-status/icons')
+var badge = require('logux-status/badge')
+
+badge(client, {
+  position: 'bottom-right',
+  messages: badgeMessages,
+  styles: badgeStyles,
+  icons: badgeIcons
+})
+```
+
+This feature will be useful for application users to be aware of
+current Logux server connection status. To make sure that they won’t
+lose any unsaved data because of server malfunctioning.
+
+In the second argument you can pass object to configure widget appearance
+in different states.
+
+First of all you must define base styles for widget and styles
+in different states. Icon for widget injecting as background image,
+so remember about left padding for appropriate positioning.
+
+Possible states are: `synchronized`, `disconnected`, `wait`, `sending`,
+`connecting`, `error`, `protocolError`. Use states as keys in `styles`
+object with value of object with desired styles.
+
+```js
+  styles: {
+    ...badgeStyles,
+    baseStyles: {
+      position: absolute,
+      height: '50px',
+      width: '200px',
+      paddingLeft: '50px'
+    }
+    synchronized: {
+      backgroundColor: 'green'
+    }
+  }
+```
+
+To configure custom messages appearing on different states,
+use `messages` object with states as keys and desired strings as value.
+Use `<br>` tag for multiline messages.
+
+```js
+  messages: {
+    ...badgeMessages,
+    synchronized: 'Your data has been saved',
+    error: 'Server error.<br>Your data has not been saved'
+  }
+```
+
+To configure custom icons appearing on different states, use `icons` object
+with states as keys and desired icons imported with `url-loader`.
+
+```js
+badge(client, {
+  icons: {
+    ...badgeIcons,
+    error: require('./error.svg'),
+  }
+})
+```
+
+Also there is an opportunity to configure location of widget.
+Possible options to X-axis: `left`, `center`, `right`.
+Possible options to Y-axis: `top`, `middle`, `bottom`.
+
+```js
+badge(client, {
+  position: 'top-left'
+})
+```
+
+It returns a function to disable itself and remove widget from DOM.
+
+```js
+var unbind = badge(client)
 function disableLogux() {
   unbind()
 }
