@@ -15,10 +15,10 @@
   "devDependencies": {
     "docdash": "^0.4.0",
     "eslint": "^3.19.0",
-    "eslint-config-import": "^0.13.0",
     "eslint-config-logux": "^11.0.1",
     "eslint-config-standard": "^10.0.0",
     "eslint-plugin-es5": "^1.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jest": "^19.0.1",
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
