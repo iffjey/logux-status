@@ -16,7 +16,6 @@ var log = require('logux-status/log')
 
 var badgeMessages = require('logux-status/badge/en')
 var badgeStyles = require('logux-status/badge/default')
-var badgeIcons = require('logux-status/icons')
 var badge = require('logux-status/badge')
 
 attention(client)
@@ -27,10 +26,9 @@ favicon(client, {
   error: '/error.ico'
 })
 badge(client, {
-  position: 'bottom-right',
+  position: 'bottom-left',
   messages: badgeMessages,
-  styles: badgeStyles,
-  icons: badgeIcons
+  styles: badgeStyles
 })
 log(client)
 ```
@@ -146,14 +144,12 @@ Display Logux synchronization state in widget.
 ```js
 var badgeMessages = require('logux-status/badge/en')
 var badgeStyles = require('logux-status/badge/default')
-var badgeIcons = require('logux-status/icons')
 var badge = require('logux-status/badge')
 
 badge(client, {
-  position: 'bottom-right',
+  position: 'bottom-left',
   messages: badgeMessages,
-  styles: badgeStyles,
-  icons: badgeIcons
+  styles: badgeStyles
 })
 ```
 
@@ -187,6 +183,19 @@ object with value of object with desired styles.
   }
 ```
 
+`styles` settings also contains `icons` object with icons URLs for different
+states. Best way will be to put icons inside JS file via `url-loader`
+and `data:uri` encoding.
+
+```js
+badge(client, {
+  icons: {
+    ...badgeIcons,
+    error: require('./error.svg'),
+  }
+})
+```
+
 To configure custom messages appearing on different states,
 use `messages` object with states as keys and desired strings as value.
 Use `<br>` tag for multiline messages.
@@ -199,24 +208,14 @@ Use `<br>` tag for multiline messages.
   }
 ```
 
-To configure custom icons appearing on different states, use `icons` object
-with states as keys and desired icons imported with `url-loader`.
-
-```js
-badge(client, {
-  icons: {
-    ...badgeIcons,
-    error: require('./error.svg'),
-  }
-})
-```
-
 Also there is an opportunity to configure location of widget.
 Possible options to X-axis: `left`, `center`, `right`.
 Possible options to Y-axis: `top`, `middle`, `bottom`.
 
 ```js
 badge(client, {
+  ...styles,
+  ...messages,
   position: 'top-left'
 })
 ```
