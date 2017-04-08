@@ -125,9 +125,9 @@ favicon(client, {
 
 Recommendations for favicon versions:
 
-- For `offline` you could make a black-and-white version
+* For `offline` you could make a black-and-white version
   and make it a little lighter.
-- For `error` you could put a red dot to favicon.
+* For `error` you could put a red dot to favicon.
 
 It returns a function to disable itself.
 
@@ -244,7 +244,7 @@ This feature will be useful for application developer to understand
 Logux life cycle and debug errors.
 
 In second argument you can disable some message types.
-Possible types are: `state`, `error`, `add`, `clean`.
+Possible types are: `state`, `role`, `error`, `add`, `clean`.
 
 ```js
 log(client, { add: false })
