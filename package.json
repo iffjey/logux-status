@@ -63,6 +63,9 @@
       "global": {
         "statements": 100
       }
+    },
+    "moduleNameMapper": {
+      ".*\\.svg$": "<rootDir>/test/image.js"
     }
   },
   "eslintConfig": {
