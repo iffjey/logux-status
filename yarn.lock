@@ -2731,7 +2731,7 @@ logux-core@logux/logux-core:
 
 logux-sync@logux/logux-sync:
   version "0.1.2"
-  resolved "https://codeload.github.com/logux/logux-sync/tar.gz/6f556723721c19221932f69591db27611e584ca6"
+  resolved "https://codeload.github.com/logux/logux-sync/tar.gz/6f855be4a1524a4573a6c6411c7aac67ff6d4e79"
   dependencies:
     nanoevents "^0.3.0"
 
