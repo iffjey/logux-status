@@ -171,7 +171,7 @@ object with value of object with desired styles.
 ```js
   styles: {
     ...badgeStyles,
-    baseStyles: {
+    base: {
       position: absolute,
       height: '50px',
       width: '200px',
@@ -179,21 +179,12 @@ object with value of object with desired styles.
     }
     synchronized: {
       backgroundColor: 'green'
+    },
+    error: {
+      backgroundColor: 'red'
+      backgroundIcon: require('./error.svg'),
     }
   }
-```
-
-`styles` settings also contains `icons` object with icons URLs for different
-states. Best way will be to put icons inside JS file via `url-loader`
-and `data:uri` encoding.
-
-```js
-badge(client, {
-  icons: {
-    ...badgeIcons,
-    error: require('./error.svg'),
-  }
-})
 ```
 
 To configure custom messages appearing on different states,
